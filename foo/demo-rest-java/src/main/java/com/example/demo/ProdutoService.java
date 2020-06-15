@@ -17,7 +17,7 @@ public class ProdutoService implements IProdutoService {
 
     public Produto inserirProduto(String nome, BigDecimal preco) throws Exception {
 
-        logger.gravar("Serviço de produto iniciado");
+        logger.Gravar("Serviço de produto iniciado");
 
         return repository.inserir(nome, preco);
     }

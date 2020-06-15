@@ -1,18 +1,22 @@
 package com.example.demo;
 
+import java.math.BigDecimal;
+
 public class ProdutoResponse {
 
     private Produto produto;
-    private final boolean sucesso;
-    private final String mensagem;
+    private boolean sucesso;
+    private String mensagem;
 
-    public ProdutoResponse(final Produto produto, final boolean sucesso, final String mensagem) {
+    public ProdutoResponse(Produto produto,
+                           boolean sucesso,
+                           String mensagem) {
         this.produto = produto;
         this.sucesso = sucesso;
         this.mensagem = mensagem;
     }
 
-    public ProdutoResponse(final boolean sucesso, final String mensagem) {
+    public ProdutoResponse(boolean sucesso, String mensagem){
         this.sucesso = sucesso;
         this.mensagem = mensagem;
     }

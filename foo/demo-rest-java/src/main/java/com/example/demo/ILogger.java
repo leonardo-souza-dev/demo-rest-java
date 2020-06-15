@@ -1,5 +1,5 @@
 package com.example.demo;
 
 public interface ILogger {
-    void gravar(String mensagem) throws Exception;
+    void Gravar(String mensagem) throws Exception;
 }
