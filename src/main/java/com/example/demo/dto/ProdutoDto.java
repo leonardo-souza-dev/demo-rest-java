@@ -1,18 +1,20 @@
-package com.example.demo;
+package com.example.demo.dto;
 
-public class ProdutoResponse {
+import com.example.demo.model.*;
+
+public class ProdutoDto {
 
     private Produto produto;
-    private final boolean sucesso;
+    private final Boolean sucesso;
     private final String mensagem;
 
-    public ProdutoResponse(final Produto produto, final boolean sucesso, final String mensagem) {
+    public ProdutoDto(final Produto produto, final Boolean sucesso, final String mensagem) {
         this.produto = produto;
         this.sucesso = sucesso;
         this.mensagem = mensagem;
     }
 
-    public ProdutoResponse(final boolean sucesso, final String mensagem) {
+    public ProdutoDto(final Boolean sucesso, final String mensagem) {
         this.sucesso = sucesso;
         this.mensagem = mensagem;
     }
