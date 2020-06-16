@@ -16,14 +16,15 @@ public class ProdutoTests {
         // arrange
         String nomeProduto = "TV";
         BigDecimal preco = new BigDecimal(3999);
-        
+
         ProdutoRepository repository = new ProdutoRepository();
         Logger logger = new Logger();
         ProdutoService service = new ProdutoService(repository, logger);
-        ProdutoController controller = new ProdutoController(service);
+        
+        ProdutoController sut = new ProdutoController(service);
 
         // act
-        ProdutoResponse response = controller.inserirProduto(nomeProduto, preco);
+        ProdutoResponse response = sut.inserirProduto(nomeProduto, preco);
 
         // assert
         assertNotNull(response);
