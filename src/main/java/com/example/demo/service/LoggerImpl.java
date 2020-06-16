@@ -1,9 +1,9 @@
-package com.example.demo;
+package com.example.demo.service;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class Logger implements ILogger {
+public class LoggerImpl implements Logger {
     @Override
     public void gravar(String mensagem) throws Exception {
         String foo = "bar";
