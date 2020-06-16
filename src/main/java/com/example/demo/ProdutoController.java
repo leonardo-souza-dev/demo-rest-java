@@ -16,20 +16,19 @@ public class ProdutoController {
 	}
 
 	@GetMapping("/inserirProduto")
-	public ProdutoResponse inserirProduto(
-			@RequestParam(value = "nome") String nome,
-			@RequestParam(value = "preco") BigDecimal preco) throws Exception {
+	public ProdutoResponse inserirProduto(@RequestParam(value = "nome") String nome, @RequestParam(value = "preco") BigDecimal preco) throws Exception {
+
 		ProdutoResponse response;
 		try {
 			Produto produto = service.inserirProduto(nome, preco);
 			response = new ProdutoResponse(
-					produto,
-					true,
-					"Produto inserido com sucesso");}
+				produto,
+				true,
+				"Produto inserido com sucesso");}
 		catch (Exception ex){
 			response = new ProdutoResponse(
-					false,
-					"Ocorreu um erro ao inserir o produto");
+				false,
+				"Ocorreu um erro ao inserir o produto");
 		}
 		return response;
 	}

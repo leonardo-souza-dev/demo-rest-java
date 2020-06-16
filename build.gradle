@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.3.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+    id "org.sonarqube" version "2.7"
 }
 
 group = 'com.example'
@@ -21,4 +22,12 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+	afterTest { desc, result -> 
+        logger.quiet ""
+        logger.quiet "#######################"
+        logger.quiet "##    TEST RESULT    ##"
+        logger.quiet "#######################"
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+        logger.quiet ""
+    }
 }
