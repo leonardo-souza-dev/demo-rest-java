@@ -4,34 +4,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-
-import com.example.demo.*;
+import com.example.demo.dto.*;
+import com.example.demo.model.*;
+import com.example.demo.service.*;
 
 @RestController
 public class IdentityController {
 
-	// private UsuarioService service;
+	private IdentityService service;
 
-	// public IdentityController(UsuarioService service){
-	// 	this.service = service;
-	// }
+	public IdentityController(IdentityService service){
+		this.service = service;
+	}
 
-	// @GetMapping("/inserirUsuario")
-	// public ProdutoResponse inserirUsuario(@RequestParam(value = "nome") String nome, @RequestParam(value = "preco") BigDecimal preco) throws Exception {
+	@GetMapping("/cadastrarUsuario")
+	public UsuarioDto cadastrarUsuario(@RequestParam(value = "email") String email, @RequestParam(value = "senha") String senha) {
 
-	// 	ProdutoResponse response;
-	// 	try {
-	// 		Produto produto = service.inserirProduto(nome, preco);
-	// 		response = new ProdutoResponse(
-	// 			produto,
-	// 			true,
-	// 			"Produto inserido com sucesso");}
-	// 	catch (Exception ex){
-	// 		response = new ProdutoResponse(
-	// 			false,
-	// 			"Ocorreu um erro ao inserir o produto");
-	// 	}
-	// 	return response;
-	// }
+		Usuario usuario = service.cadastrarUsuario(email, senha);
+
+		if (usuario != null)
+			return new UsuarioDto(usuario.getEmail(), usuario.getSenha());
+		else
+			return null;
+	}
 }
