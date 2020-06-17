@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class ProdutoTests {
 
-    @Test
-    public void deveInserirProduto() throws Exception {
+    // @Test
+    // public void deveInserirProduto() throws Exception {
 		
-        // arrange
+    //     // arrange
 
-        // act
+    //     // act
 
-        // assert
-    }
+    //     // assert
+    // }
 }
