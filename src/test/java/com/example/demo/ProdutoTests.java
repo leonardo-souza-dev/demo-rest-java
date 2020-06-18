@@ -17,7 +17,7 @@ public class ProdutoTests {
 
     @Test
     public void deveInserirProduto() throws Exception {
-		
+
         // arrange
         String nomeProduto = "TV";
         BigDecimal preco = new BigDecimal(3999);
