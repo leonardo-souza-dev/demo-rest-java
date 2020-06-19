@@ -13,23 +13,30 @@ import com.example.demo.dto.*;
 @RestController
 public class ProdutoController {
 
-	private ProdutoService service;
+	private final ProdutoService service;
 
-	public ProdutoController(ProdutoService service){
+	public ProdutoController(final ProdutoService service){
 		this.service = service;
 	}
 
 	@GetMapping("/inserirProduto")
-	public ProdutoDto inserirProduto(@RequestParam(value = "nome") String nome, @RequestParam(value = "preco") BigDecimal preco) throws Exception {
+	public ProdutoDto inserirProduto(@RequestParam(value = "nome") final String nome, @RequestParam(value = "preco") final BigDecimal preco) throws Exception {
 
 		ProdutoDto response;
 		try {
 			Produto produto = service.inserirProduto(nome, preco);
+
+			if (produto == null) {
+				response = new ProdutoDto(false, "Ocorreu um erro ao inserir o produto");
+			} 
+			else {
 			response = new ProdutoDto(
 				produto,
 				true,
-				"Produto inserido com sucesso");}
-		catch (Exception ex){
+				"Produto inserido com sucesso");
+			}
+		}
+		catch (final Exception ex){
 			response = new ProdutoDto(
 				false,
 				"Ocorreu um erro ao inserir o produto");

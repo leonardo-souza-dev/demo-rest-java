@@ -9,6 +9,11 @@ import com.example.demo.repository.ProdutoRepository;
 import com.example.demo.service.Logger;
 import com.example.demo.service.ProdutoServiceImpl;
 
+import com.example.demo.controller.ProdutoController;
+import com.example.demo.dto.ProdutoDto;
+import com.example.demo.repository.*;
+import com.example.demo.service.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
@@ -36,5 +41,15 @@ public class ProdutoTests {
 
         // assert
         assertNull(produto);
+    }
+
+    @Test
+    public void deveInserirProduto() throws Exception {
+
+        // arrange
+
+        // act
+
+        // assert
     }
 }
