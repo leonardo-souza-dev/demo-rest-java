@@ -22,6 +22,10 @@ public class ProdutoServiceImpl implements ProdutoService {
 
         logger.gravar("Serviço de produto iniciado");
 
+        if (preco.compareTo(new BigDecimal(10000)) > 0) {
+            return null;
+        }
+
         return repository.inserir(nome, preco);
     }
 }
