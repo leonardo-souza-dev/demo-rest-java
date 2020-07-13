@@ -18,7 +18,7 @@ public class ProdutoServiceImpl implements ProdutoService {
         this.logger = logger;
     }
 
-    public Produto inserirProduto(String nome, BigDecimal preco) throws Exception {
+    public Produto inserirProduto(String nome, BigDecimal preco)  {
 
         logger.gravar("Serviço de produto iniciado");
 

@@ -24,27 +24,25 @@ import java.math.BigDecimal;
 @SpringBootTest
 public class ProdutoTests {
 
-    @Mock
-    ProdutoRepository repository;
-
-    @Mock
-    LoggerImpl logger;
-
-    @Mock
-    ProdutoService produtoService;
-
+    /// eu espero conseguir inserir um produto no repositorio
     @Test
-    public void naoDeveInserirProdutoNaBaseSePrecoMaiorQue10000() throws Exception {
+    public void Foo1() {
+    }
+
+    /// eu não devo conseguir inserir um produto quando o preço for maior que 10000
+    @Test
+    public void Foo2() {
+    }
+
+    /// eu devo conseguir inserir um produto e não depender do serviço de log
+    @Test
+    public void Foo3() {
         
     }
 
+    /// eu preciso saber se o repositório é chamado ao salvar um produto válido
     @Test
-    public void deveLogarQuandoPrecoForaDaFaixa() throws Exception {
-     
-    }
-
-    @Test
-    public void deveRetornarMensagemCorretaAoInserirProdutoNaController() throws Exception {
+    public void Foo4() {
 
     }
 }
