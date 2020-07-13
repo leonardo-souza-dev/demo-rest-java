@@ -25,70 +25,26 @@ import java.math.BigDecimal;
 public class ProdutoTests {
 
     @Mock
-    private ProdutoRepository repository;
+    ProdutoRepository repository;
 
     @Mock
-    private Logger logger;
+    LoggerImpl logger;
 
     @Mock
-    private ProdutoService produtoService;
+    ProdutoService produtoService;
 
     @Test
     public void naoDeveInserirProdutoNaBaseSePrecoMaiorQue10000() throws Exception {
-		
-        // arrange
-        String nome = "TV";
-        BigDecimal preco = new BigDecimal(11000);
-
-        ProdutoServiceImpl sut = new ProdutoServiceImpl(repository, logger);
         
-        // act
-        Produto produto = sut.inserirProduto(nome, preco);
-
-        // assert
-        assertNull(produto);
     }
 
     @Test
     public void deveLogarQuandoPrecoForaDaFaixa() throws Exception {
-
-        // arrange
-        ProdutoServiceImpl sut = new ProdutoServiceImpl(repository, logger);
-
-        // act
-        Produto produtoDto = sut.inserirProduto("TV", new BigDecimal(11000));
-
-        // assert
-        verify(logger).gravar("Preço fora da faixa permitida");;
+     
     }
 
     @Test
-    public void deveRetornarMensagemCorretaAoInserirProduto() throws Exception {
+    public void deveRetornarMensagemCorretaAoInserirProdutoNaController() throws Exception {
 
-        // arrange
-        String nomeProduto = "TV";
-        BigDecimal preco = new BigDecimal(2000);
-        Produto produto = new Produto(nomeProduto, preco);
-
-        when(produtoService.inserirProduto(nomeProduto, preco)).thenReturn(produto);
-
-        ProdutoController sut = new ProdutoController(produtoService);
-
-        // act
-        ProdutoDto produtoDto = sut.inserirProduto(nomeProduto, preco);
-
-        // assert
-        assertNotNull(produtoDto);
-        assertEquals("Produto inserido com sucesso", produtoDto.getMensagem());
-    }
-
-    @Test
-    public void deveInserirProduto() throws Exception {
-
-        // arrange
-
-        // act
-
-        // assert
     }
 }
