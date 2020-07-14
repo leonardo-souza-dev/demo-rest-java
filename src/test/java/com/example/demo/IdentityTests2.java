@@ -28,20 +28,4 @@ public class IdentityTests2 {
         // assert
         assertNull(usuario);
     }
-
-    // @Test
-    // public void naoDeveCadastrarQuandoDiferenteDeGmail() {
-		
-    //     // arrange
-    //     String email = "teste@teste.com";
-    //     String senha = "1";
-
-    //     IdentityServiceImpl sut = new IdentityServiceImpl();
-        
-    //     // act
-    //     Usuario usuario = sut.cadastrarUsuario(email, senha);
-
-    //     // assert
-    //     assertNull(usuario);
-    // }
 }
