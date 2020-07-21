@@ -24,19 +24,65 @@ import java.math.BigDecimal;
 @SpringBootTest
 public class ProdutoTests {
 
+    @Mock
+    ProdutoRepositoryImpl produtoRepository;
+
+    @Mock
+    Logger logger;
     /// eu espero conseguir inserir um produto no repositorio
     @Test
-    public void Foo1() {
+    public void inserindoProdutoNoRepositorio() {
+        
+        //arrange
+        ProdutoServiceImpl sut = new ProdutoServiceImpl(produtoRepository, logger);
+
+        String nomeProduto = "Notebook";
+        BigDecimal valor = new BigDecimal(2000);
+        Produto produto = new Produto(nomeProduto,valor);
+
+        when(produtoRepository.inserir(nomeProduto, valor)).thenReturn(produto);
+
+        //act
+        Produto retorno = sut.inserirProduto(nomeProduto,valor);
+        //assert
+        assertNotNull(retorno);
     }
 
     /// eu não devo conseguir inserir um produto quando o preço for maior que 10000
     @Test
-    public void Foo2() {
+    public void produtoNaoPodeSerInserioComValorMaiorQue1000() {
+         //arrange
+        ProdutoServiceImpl sut = new ProdutoServiceImpl(produtoRepository, logger);
+
+        String nomeProduto = "Notebook";
+        BigDecimal valor = new BigDecimal(11000);
+        Produto produto = new Produto(nomeProduto,valor);
+        when(produtoRepository.inserir(nomeProduto, valor)).thenReturn(produto);
+
+       //act
+        Produto retorno = sut.inserirProduto(nomeProduto,valor);
+
+        //assert
+        assertNull(retorno);
     }
 
     /// eu devo conseguir inserir um produto e não depender do serviço de log
     @Test
-    public void Foo3() {
+    public void inserirProdutoSemDependerDoServicoDeLogger() {
+        //arrange
+        ProdutoServiceImpl sut = new ProdutoServiceImpl(produtoRepository, logger);
+
+        String nomeProduto = "Notebook";
+        BigDecimal valor = new BigDecimal(2000);
+        Produto produto = new Produto(nomeProduto,valor);
+
+        //act
+        when(produtoRepository.inserir(nomeProduto, valor)).thenReturn(produto);
+        
+        Produto retorno = sut.inserirProduto(nomeProduto,valor);
+
+        //assert
+        assertNotNull(retorno);
         
     }
 
