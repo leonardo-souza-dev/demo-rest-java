@@ -28,7 +28,7 @@ public class ProdutoTests {
     ProdutoRepository repository;
 
     @Mock
-    LoggerImpl logger;
+    Logger logger;
 
     @Mock
     ProdutoService produtoService;
