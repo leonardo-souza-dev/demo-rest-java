@@ -24,25 +24,43 @@ import java.math.BigDecimal;
 @SpringBootTest
 public class ProdutoTests {
 
-    /// eu espero conseguir gravar um produto no repositorio
+    @Mock
+    Logger logger;
+
+    @Mock
+    ProdutoRepository produtoRepository;
+        
+    /// eu espero conseguir gravar um produto no repositorio (implementacao concreta)
     @Test
-    public void Foo1() {
+    public void deveGravarUmProdutoNoRepositorioComSucesso() throws Exception {
+
+        // arrange    
+        Produto tv = new Produto("TV", BigDecimal.valueOf(1000.00));
+        ProdutoService sut = new ProdutoServiceImpl(produtoRepository, logger);
+
+        when(produtoRepository.inserir(Mockito.anyString(), Mockito.any())).thenReturn(tv);
+
+        // act
+        Produto produto = sut.inserirProduto("TV", BigDecimal.valueOf(1000.00));
+
+        // assert
+        assertNotNull(produto);
     }
 
     /// eu não devo conseguir inserir um produto quando o preço for maior que 10000
     @Test
-    public void Foo2() {
+    public void Foo2() throws Exception {
     }
 
     /// eu devo conseguir inserir um produto e não depender do serviço de log
     @Test
-    public void Foo3() {
+    public void Foo3() throws Exception {
         
     }
 
     /// eu preciso saber se o repositório é chamado ao salvar um produto válido
     @Test
-    public void Foo4() {
+    public void Foo4() throws Exception {
 
     }
 }
