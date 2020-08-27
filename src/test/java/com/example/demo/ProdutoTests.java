@@ -24,7 +24,7 @@ import java.math.BigDecimal;
 @SpringBootTest
 public class ProdutoTests {
 
-    /// eu espero conseguir inserir um produto no repositorio
+    /// eu espero conseguir gravar um produto no repositorio
     @Test
     public void Foo1() {
     }
