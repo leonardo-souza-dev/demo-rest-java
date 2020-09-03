@@ -24,60 +24,60 @@ import java.math.BigDecimal;
 @SpringBootTest
 public class ProdutoTests {
 
+    @Mock
+    ProdutoRepository repository;
+
+    @Mock
+    Logger logger;
+
     // K.I.S.S.
-    @Mock
-    private Logger logger;
-    @Mock
-    private ProdutoRepository produtoRepository;
+    // Y.A.G.N.I.
+
     /// eu espero conseguir gravar um produto no ProdutoRepositoryImpl
     @Test
-    public void Foo1() throws Exception {
-        // arrange
-        String nomeProduto = "PS5";
-        BigDecimal preco = new BigDecimal(10);
+    public void deveConseguirInserirUmProduto() throws Exception {
+        //Arrange
+        String nome = "Computador";
+        BigDecimal preco = new BigDecimal(1000);
+        ProdutoRepositoryImpl sut = new ProdutoRepositoryImpl(); 
 
-        // act
-        ProdutoRepositoryImpl sut = new ProdutoRepositoryImpl();
-        Produto produto = sut.inserir(nomeProduto, preco);
+        //act
+        Produto computador = sut.inserir(nome, preco);
 
-        // assert
-        assertNotNull(produto);
-        assertEquals(produto.getNome(), nomeProduto);
-        assertEquals(produto.getPreco(), preco);
+        //assert
+        assertNotNull(computador);
     }
 
     /// eu não devo conseguir inserir um produto quando o preço for maior que 10000
     @Test
-    public void naoDeveInserirProdutoSePrecoMaior10000() throws Exception {
-        // arrange
-        String nomeProduto = "PS5";
-        BigDecimal preco = new BigDecimal(10005);
-
-        ProdutoServiceImpl sut = new ProdutoServiceImpl(produtoRepository, logger);
+    public void naoDeveInserirProdutoPrecoMaior10000() throws Exception {
+        
+        //Arrange
+        String nome = "Computador";
+        BigDecimal preco = new BigDecimal(500);
+        ProdutoServiceImpl sut = new ProdutoServiceImpl(repository, logger); 
 
         //act
-        Produto produto = sut.inserirProduto(nomeProduto, preco);
+        Produto computador = sut.inserirProduto(nome, preco);
 
-        //assert 
-        assertNull(produto);
-        verify(logger).gravar("Preço fora da faixa permitida");
+        //assert
+        assertNull(computador);
     }
 
     /// eu preciso saber se o repositório é chamado ao salvar um produto válido no serviço
     @Test
-    public void deveChamarRepositorioAoSalvarUmProdutoValidoNoServico() throws Exception {
-        // arrange
-        String nome = "TV";
-        BigDecimal preco = new BigDecimal(7000);
-        ProdutoServiceImpl sut = new ProdutoServiceImpl(produtoRepository, logger);
+    public void deveChamarORepositoryAoSalvarUmProdutoValido() throws Exception {
+        
+        // Arrange
+        String nome = "Computador";
+        BigDecimal preco = new BigDecimal(4000);
 
-        when(produtoRepository.inserir(nome, preco)).thenReturn(new Produto(nome, preco));
+        ProdutoServiceImpl sut = new ProdutoServiceImpl(repository, logger); 
 
-        //act
-        Produto produto = sut.inserirProduto(nome, preco);
+        // Act
+        Produto computador = sut.inserirProduto(nome, preco);
 
-        //assert
-        assertNotNull(produto);
-        verify(produtoRepository).inserir(nome, preco);
+        // Assert
+        Mockito.verify(repository).inserir(nome, preco);
     }
 }
