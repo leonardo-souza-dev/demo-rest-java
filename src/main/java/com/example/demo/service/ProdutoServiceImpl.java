@@ -19,7 +19,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     public Produto inserirProduto(String nome, BigDecimal preco)  {
-
+     
         logger.gravar("Serviço de produto iniciado");
 
         if (preco.compareTo(new BigDecimal(10000)) > 0) {
