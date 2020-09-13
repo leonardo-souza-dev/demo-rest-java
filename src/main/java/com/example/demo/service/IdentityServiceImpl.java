@@ -9,7 +9,7 @@ public class IdentityServiceImpl implements IdentityService {
 
     public Usuario cadastrarUsuario(String email, String senha){
         
-        if (!validarDados1(senha)) {
+        if (!validarDados(senha)) {
             return null;
         }
 
@@ -18,15 +18,7 @@ public class IdentityServiceImpl implements IdentityService {
         return new Usuario(email, senha);
     }
 
-    private boolean validarDados1(String senha) {        
-        if (senha.length() > 8)
-            return true;        
-        return false;
+    private boolean validarDados(String senha) {        
+        return senha.length() > 8;
     }
-
-    // private boolean validarDados2(String senha, String email) {        
-    //     if (senha.length() > 8 && email.contains("gmail"))
-    //         return true;        
-    //     return false;
-    // }
 }
