@@ -14,23 +14,34 @@ import com.example.demo.dto.*;
 @RestController
 public class ProdutoController {
 
-	private ProdutoService service;
+	private final ProdutoService service;
 
-	@Autowired
+    @Autowired
 	public ProdutoController(ProdutoService service){
 		this.service = service;
 	}
 
 	@GetMapping("/inserirProduto")
-	public ProdutoDto inserirProduto(@RequestParam(value = "nome") String nome, @RequestParam(value = "preco") BigDecimal preco) throws Exception {
+	public ProdutoDto inserirProduto(@RequestParam(value = "nome") final String nome,
+									 @RequestParam(value = "preco") final BigDecimal preco) throws Exception {
 
-		Produto produto = service.inserirProduto(nome, preco);
-		
-		if (produto != null) {
-			return new ProdutoDto(produto, true, "Produto inserido com sucesso");
-		} 
-		else {
-			return new ProdutoDto(false, "Ocorreu um erro ao inserir o produto");
+		ProdutoDto response;
+		try {
+			Produto produto = service.inserirProduto(nome, preco);
+
+			if (produto != null) {
+				return new ProdutoDto(produto, true, "Produto inserido com sucesso");
+			}
+			else {
+				return new ProdutoDto(false, "Ocorreu um erro ao inserir o produto");
+			}
 		}
+		catch (final Exception ex){
+			response = new ProdutoDto(
+				false,
+				"Ocorreu um erro ao inserir o produto");
+		}
+
+		return response;
 	}
 }
