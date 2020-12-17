@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ public class ProdutoController {
 
 	private ProdutoService service;
 
+	@Autowired
 	public ProdutoController(ProdutoService service){
 		this.service = service;
 	}
@@ -24,7 +26,7 @@ public class ProdutoController {
 
 		Produto produto = service.inserirProduto(nome, preco);
 		
-		if (produto == null) {
+		if (produto != null) {
 			return new ProdutoDto(produto, true, "Produto inserido com sucesso");
 		} 
 		else {
