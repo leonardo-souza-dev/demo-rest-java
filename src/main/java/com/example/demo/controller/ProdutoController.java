@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,25 +16,24 @@ public class ProdutoController {
 
 	private final ProdutoService service;
 
-	public ProdutoController(final ProdutoService service){
+    @Autowired
+	public ProdutoController(ProdutoService service){
 		this.service = service;
 	}
 
 	@GetMapping("/inserirProduto")
-	public ProdutoDto inserirProduto(@RequestParam(value = "nome") final String nome, @RequestParam(value = "preco") final BigDecimal preco) throws Exception {
+	public ProdutoDto inserirProduto(@RequestParam(value = "nome") final String nome,
+									 @RequestParam(value = "preco") final BigDecimal preco) throws Exception {
 
 		ProdutoDto response;
 		try {
 			Produto produto = service.inserirProduto(nome, preco);
 
-			if (produto == null) {
-				response = new ProdutoDto(false, "Ocorreu um erro ao inserir o produto");
-			} 
+			if (produto != null) {
+				return new ProdutoDto(produto, true, "Produto inserido com sucesso");
+			}
 			else {
-			response = new ProdutoDto(
-				produto,
-				true,
-				"Produto inserido com sucesso");
+				return new ProdutoDto(false, "Ocorreu um erro ao inserir o produto");
 			}
 		}
 		catch (final Exception ex){
@@ -41,6 +41,7 @@ public class ProdutoController {
 				false,
 				"Ocorreu um erro ao inserir o produto");
 		}
+
 		return response;
 	}
 }
