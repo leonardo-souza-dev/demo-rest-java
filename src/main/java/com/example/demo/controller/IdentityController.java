@@ -22,9 +22,6 @@ public class IdentityController {
 
 		Usuario usuario = service.cadastrarUsuario(email, senha);
 
-		if (usuario != null)
-			return new UsuarioDto(usuario.getEmail(), usuario.getSenha());
-		else
-			return null;
+		return usuario != null ? new UsuarioDto(usuario.getEmail(), usuario.getSenha()) : null;
 	}
 }

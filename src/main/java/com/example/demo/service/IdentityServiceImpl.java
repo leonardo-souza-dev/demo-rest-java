@@ -8,7 +8,7 @@ import com.example.demo.model.*;
 public class IdentityServiceImpl implements IdentityService {
 
     public Usuario cadastrarUsuario(String email, String senha){
-        
+
         if (!validarDados(email, senha)) {
             return null;
         }
@@ -18,7 +18,7 @@ public class IdentityServiceImpl implements IdentityService {
         return new Usuario(email, senha);
     }
 
-    private boolean validarDados(String email, String senha) {        
+    private boolean validarDados(String email, String senha) {
         return senha.length() >= 8 && email.contains("gmail");
     }
 }
