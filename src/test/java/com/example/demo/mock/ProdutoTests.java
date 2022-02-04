@@ -35,12 +35,12 @@ public class ProdutoTests {
 
     @Test
     public void naoDeveInserirProdutoNaBaseSePrecoMaiorQue10000() throws Exception {
-        
+
     }
 
     @Test
-    public void deveLogarQuandoPrecoForaDaFaixa() throws Exception {
-     
+    public void deveLogarQuandoPrecoForaDaFaixa_entaoAMsgEhTal() throws Exception {
+
     }
 
     @Test
