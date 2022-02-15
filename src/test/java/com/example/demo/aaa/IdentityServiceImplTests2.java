@@ -11,10 +11,26 @@ import com.example.demo.service.IdentityServiceImpl;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class IdentityTests2 {
+public class IdentityServiceImplTests2 {
 
     @Test
-    public void naoDeveCadastrarUsuarioComSenhaCurta() {
+    public void quandoSenhaValida_deveCadastrarUsuario() {
+		
+        // arrange
+        String email = "teste@gmail.com";
+        String senha = "asdfghj1";
+
+        IdentityServiceImpl sut = new IdentityServiceImpl();
+        
+        // act
+        Usuario usuario = sut.cadastrarUsuario(email, senha);
+
+        // assert
+        assertNotNull(usuario);
+    }
+
+    @Test
+    public void quandoSenhaCurta_naoDeveCadastrarUsuario() {
 		
         // arrange
         String email = "teste@gmail.com";

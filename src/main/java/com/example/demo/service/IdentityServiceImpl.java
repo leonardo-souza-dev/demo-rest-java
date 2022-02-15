@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Pattern;
+
 import com.example.demo.model.*;
 
 @Service
@@ -19,6 +21,18 @@ public class IdentityServiceImpl implements IdentityService {
     }
 
     private boolean validarDados(String email, String senha) {
-        return senha.length() >= 8 && email.contains("gmail");
+        return validarTamanhoSenha(senha) && validarNumeroObrigatorio(senha) && validarProvedor(email);
+    }
+
+    private boolean validarTamanhoSenha(String senha) {
+        return senha.length() >= 8;
+    }
+    
+    private boolean validarNumeroObrigatorio(String senha) {
+        return senha.matches(".*\\d+.*");
+    }
+    
+    private boolean validarProvedor(String email) {
+        return email.contains("gmail");
     }
 }
