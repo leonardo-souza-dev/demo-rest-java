@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 import java.math.BigDecimal;
 
 @SpringBootTest
-public class ProdutoTests {
+public class ProdutoServiceImplTests {
 
     @Mock
     ProdutoRepository repository;

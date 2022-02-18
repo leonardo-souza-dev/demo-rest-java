@@ -28,6 +28,13 @@ public class ProdutoServiceImpl implements ProdutoService {
             return null;
         }
 
-        return repository.inserir(nome, preco);
+        Produto produtoExistente = repository.obter(nome);
+
+        if (produtoExistente != null)
+            return produtoExistente;
+
+        Produto produtoInserido = repository.inserir(nome, preco);
+
+        return produtoInserido;
     }
 }
