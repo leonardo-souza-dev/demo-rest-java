@@ -14,23 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class IdentityServiceImplTests2 {
 
     @Test
-    public void quandoSenhaValida_deveCadastrarUsuario() {
-		
-        // arrange
-        String email = "teste@gmail.com";
-        String senha = "asdfghj1";
-
-        IdentityServiceImpl sut = new IdentityServiceImpl();
-        
-        // act
-        Usuario usuario = sut.cadastrarUsuario(email, senha);
-
-        // assert
-        assertNotNull(usuario);
-    }
-
-    @Test
-    public void quandoSenhaCurta_naoDeveCadastrarUsuario() {
+    public void quandoSenhaCurta_entaoNaoDeveCadastrarUsuario() {
 		
         // arrange
         String email = "teste@gmail.com";
@@ -43,5 +27,53 @@ public class IdentityServiceImplTests2 {
 
         // assert
         assertNull(usuario);
+    }
+
+    @Test
+    public void quandoSenhaSemNumero_entaoNaoDeveCadastrarUsuario() {
+		
+        // arrange
+        String email = "teste@gmail.com";
+        String senha = "asdasdasd";
+
+        IdentityServiceImpl sut = new IdentityServiceImpl();
+        
+        // act
+        Usuario usuario = sut.cadastrarUsuario(email, senha);
+
+        // assert
+        assertNull(usuario);
+    }
+
+    @Test
+    public void quandoEmailNaoGmail_entaoNaoDeveCadastrarUsuario() {
+		
+        // arrange
+        String email = "teste@uol.com";
+        String senha = "asdasdasd12";
+
+        IdentityServiceImpl sut = new IdentityServiceImpl();
+        
+        // act
+        Usuario usuario = sut.cadastrarUsuario(email, senha);
+
+        // assert
+        assertNull(usuario);
+    }
+
+    @Test
+    public void quandoDadosValidos_deveCadastrarUsuario() {
+		
+        // arrange
+        String email = "teste@gmail.com";
+        String senha = "asdfghj1";
+
+        IdentityServiceImpl sut = new IdentityServiceImpl();
+        
+        // act
+        Usuario usuario = sut.cadastrarUsuario(email, senha);
+
+        // assert
+        assertNotNull(usuario);
     }
 }
